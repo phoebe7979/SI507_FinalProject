@@ -1,4 +1,4 @@
-# Project Title
+# Marvel Cinematic Universe Database
 
 Name
 
