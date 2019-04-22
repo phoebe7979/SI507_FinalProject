@@ -1,3 +1,4 @@
+from SI507project_test import *
 import unittest
 
 
@@ -20,6 +21,8 @@ class Testing_Movie(unittest.TestCase):
 
 
 
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
 
 
 
