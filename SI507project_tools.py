@@ -101,12 +101,14 @@ for movie in title_list:
         director = omdb_result['Director']
     except KeyError:
         director = ""
+    print(director)
     try:
         poster = omdb_result["Poster"]
     except KeyError:
         poster = ""
+    print(poster)
     try:
         imdbrating = omdb_result['imdbRating']
     except KeyError:
         imdbrating = "0"
-    
+    print(imdbrating)
