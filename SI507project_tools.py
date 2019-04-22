@@ -121,3 +121,29 @@ for movie in title_list:
 ##################################################
 ############# Flask Model Classes ################
 ##################################################
+Base = declarative_base()
+
+class Phases(Base):
+    __tablename__ = 'Phases'
+    Id = Column(Integer, primary_key=True, autoincrement=True)
+    Phase = Column(String(250))
+    Intro = Column(String(250))
+
+class Directors(Base):
+    __tablename__ = 'Directors'
+    Id = Column(Integer, primary_key=True, autoincrement=True)
+    Director = Column(String(250)) # Not trying to separate the director names
+
+class Movies(Base):
+    __tablename__ = 'Movies'
+    Id = Column(Integer, primary_key=True, autoincrement=True)
+    Name = Column(String(250))
+    Year = Column(Integer)
+    Phaseid = Column(Integer, ForeignKey('Phases.Id')) # Creates a many to one relationship
+    Directorid = Column(Integer, ForeignKey('Directors.Id')) # Not trying to separate the director names
+    Tomatometer = Column(Integer)
+    AudienceScore = Column(Integer)
+    IMDBRating = Column(Integer)
+    Poster = Column(String(250))
+    Phases = relationship('Phases')
+    Directors = relationship('Directors') # Necessary for that relationship to be used in our code
