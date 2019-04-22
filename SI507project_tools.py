@@ -1,9 +1,17 @@
 from bs4 import BeautifulSoup # need beautifulsoup for scraping
 import requests, json # need these to access data on the internet and deal with structured data in my cache
 from advanced_expiry_caching import Cache # use tool from the other file for caching
+import os
+import sys
+from sqlalchemy import Column, ForeignKey, Integer, String, Float, types
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, scoped_session, sessionmaker
+from sqlalchemy import create_engine
 
-#12-50 scrraping from rotten tomatoes
-#
+#Part 1: scraping from rotten tomatoes
+#Part 2: REST API for OMDB
+#Part 3: Creating class models for database
+
 
 
 ###############################################################################################
@@ -101,14 +109,15 @@ for movie in title_list:
         director = omdb_result['Director']
     except KeyError:
         director = ""
-    print(director)
     try:
         poster = omdb_result["Poster"]
     except KeyError:
         poster = ""
-    print(poster)
     try:
         imdbrating = omdb_result['imdbRating']
     except KeyError:
         imdbrating = "0"
-    print(imdbrating)
+
+##################################################
+############# Flask Model Classes ################
+##################################################
