@@ -5,7 +5,7 @@ import os
 import sys
 from sqlalchemy import Column, ForeignKey, Integer, String, Float, types
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, scoped_session, sessionmaker
+from sqlalchemy.orm import relationship, scoped_session, sessionmaker, query
 from sqlalchemy import create_engine
 
 #Part 1: scraping from rotten tomatoes
@@ -44,19 +44,36 @@ rtmovies = soup.find_all("div", {"data-franchise-type" : "movie"})
 #now trying to get the name and year of the movies
 
 title_list = []
+movie_list = []
+
+
+#Phase lists
+phase1=[2008,2009,2010,2011,2012]
+phase2=[2013,2014,2015]
+phasee=[2016,2017,2018,2019]
 
 for movie in rtmovies:
+    new_movie = []
     title_year = movie.find("strong")
     title = title_year.find("a").text
     title_list.append(title)
-    year = title_year.find("span").text[1:-1]
+    year = int(title_year.find("span").text[1:-1])
     scores = movie.find_all("span", {"class" : "meter-value"})
     if len(scores) >1:
-        tomatometer = scores[0].text.replace(" ","")[:-1]
-        audiencescore = scores[1].text.replace(" ","")[:-1]
+        tomatometer = int(scores[0].text.replace(" ","")[1:-2])
+        audiencescore = int(scores[1].text.replace(" ","")[1:-2])
     else:
-        tomatometer = "0"
-        audiencescore = "0"
+        tomatometer = 0
+        audiencescore = 0
+    if year in phase1:
+        phase = 'Phase 1'
+    elif year in phase2:
+        phase = 'Phase 2'
+    else:
+        phase = 'Phase 3'
+    new_movie = [title, year, phase, tomatometer, audiencescore]
+    movie_list.append(new_movie)
+
 
 ########################################################
 ############# REST API requests on OMdb ################
@@ -102,21 +119,52 @@ def get_omdb_data(str):
         fileforw.close()
         return CACHE_DICTION[unique_ident]
 
-
+n = 0
 for movie in title_list:
     omdb_result = get_omdb_data(movie)
     try:
         director = omdb_result['Director']
     except KeyError:
-        director = ""
+        director = "N/A"
     try:
         poster = omdb_result["Poster"]
     except KeyError:
         poster = ""
     try:
-        imdbrating = omdb_result['imdbRating']
-    except KeyError:
-        imdbrating = "0"
+        imdbrating = int(float(omdb_result['imdbRating']) * 10)
+    except:
+        imdbrating = 0
+    movie_list[n].append(director)
+    movie_list[n].append(poster)
+    movie_list[n].append(imdbrating)
+    n += 1
+
+#manually insert Marvel's The Avengers data because the name on Rotten Tomatoes does not match with IMDB
+omdb_result = get_omdb_data("The Avengers")
+movie_list[16][-3] = omdb_result['Director']
+movie_list[16][-2] = omdb_result['Poster']
+movie_list[16][-1] = int(float(omdb_result['imdbRating']) * 10)
+
+print(movie_list)
+
+
+########################################################################
+############# Writing API and Scraped data to CSV files ################
+########################################################################
+
+
+
+
+#open a csv file for all movies and start populating data into the files
+#moviefn = open('movie.csv','w')
+#moviefn.truncate()  #clearing all data on moviefn first in case I overwrite it
+
+#for movie in movie_list:
+#    moviefn.write('{},{},{},{},{},{},{}'.format(movie[0], movie[1], movie[]))
+#    moviefn.write('\n')
+
+
+
 
 ##################################################
 ############# Flask Model Classes ################
@@ -147,3 +195,27 @@ class Movies(Base):
     Poster = Column(String(250))
     Phases = relationship('Phases')
     Directors = relationship('Directors') # Necessary for that relationship to be used in our code
+
+# Set up session
+session = scoped_session(sessionmaker())
+
+
+
+# Create an engine that stores data in the local directory's database
+engine = create_engine('sqlite:///mcumovies.sqlite', echo=False)
+
+
+# Bind the engine to the metadata of the Base class so that the declaratives can be accessed through a DBSession instance
+Base.metadata.bind = engine
+session.configure(bind=engine)
+
+def init_db():
+    # Drop all tables in the engine if needed for initialization. This is equivalent to "Delete Table" statements in raw SQL.
+    # We'll leave this commented out initially, but if you wanted to drop everythign and 'reset' it every time, you might uncomment this.
+    Base.metadata.drop_all(engine)
+
+    # Create all tables in the engine. This is equivalent to "Create Table"
+    # statements in raw SQL.
+    # But, this won't overwrite existing tables -- it will simply create new ones if necessary.
+    Base.metadata.create_all(engine)
+    return engine # Returnign the engine makes it possible to use this function in other files (e.g. query files) to access the engine and use it

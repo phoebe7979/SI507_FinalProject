@@ -16,7 +16,7 @@ class TestSourcedMovieData(unittest.TestCase):
 
 class Testing_Movie(unittest.TestCase):
      def test_init(self):
-        captainmarvel = Movie('Captain Marvel')
+        captainmarvel = Movies('Captain Marvel')
         self.assertTrue(vaptainmarvel.imdbRating)
 
 
