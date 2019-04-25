@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Welcome{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<div class="page-header">
+{% if movieitem %}
+    <h1>{{ moviename }}</h1>
+    <p>{{ movieyear }}</p>
+    <p>{{ moviedirector }}</p>
+    <img src = {{ movieimg }} alt = "poster img"/>
+    <div class="row">
+      <table class="table">
+        <thead class = "thead-light">
+          <tr>
+            <th>Tomatometer</th>
+            <th>Audience Score</th>
+            <th>IMDb Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{movietm}}</td>
+            <td>{{movieas}}</td>
+            <td>{{movieim}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+{% endif %}
+</div>
+<a href = "{{ url_for('index')}}"><button type="button" class="btn-primary">Back</button/></a>
+{% endblock %}

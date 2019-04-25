@@ -16,26 +16,23 @@ Using Matplotlib, the movie will also display the ratings from imdb, Tomatometer
 ## How to run
 
 1. Install all requirements with `pip install -r requirements.txt'
-2. Run `python programname.py runserver
+2. Run `python SI507project_tools.py runserver
 3. Open your browser, and access 127.0.0.1:5000
 
 ## How to use
 
-1. Once you reach the site, you will be prsented with a list of MCU movies.
-2. Click on 'Browse by phase' to see movies that belongs to the different phase of the Infinity Saga.
-3. A screenshot of it is like (need to insert image)
+1. Once you reach the site, you will be prsented with an image created using matplotlib.
+2. Click on each phase link such as 'Phase 1', 'Phase 2', 'Phase 3' to see the introduction to different phase of the Infinity Saga. You can return to the home page by clicking on 'Back' button located at the bottom of the page.
+3. Click 'Read more' on the home page for each movie to see individual movie release year and ratings.
 
 ## Routes in this application
 - `/` -> this is the home page
-- `/<movie>` -> this route displays each movie details
-- `/<phase> -> this route displays movies that belongs to the different phase of the saga
-- `/rating -> this route displays a visualized data of the ratings for each MCU movie
+- `/phase/<phaseid>/` -> this route displays each phase details
+- `/movie/<movieid>/>' - > this route displays movie details
+
 
 ## How to run tests
-1. First... (e.g. access a certain directory if necessary)
-2. Second (e.g. any other setup necessary)
-3. etc (e.g. run the specific test file)
-NOTE: Need not have 3 steps, but should have as many as are appropriate!
+1. Simply run the SI507project_tests.py file
 
 ## In this repository:
 - Directory Name

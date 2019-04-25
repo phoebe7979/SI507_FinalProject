@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}Welcome{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="row">
+      <h1 class = "text-center">Welcome to the Marvel Cinematic Universe Database</h1>
+  </div>
+  <div class = "row">
+      <p class = "text-center">There are {% if num_movies %}{{ num_movies }}{% else %}0{% endif %} movies in the MCU database.</p>
+  </div>
+  <div class = "row">
+    <br>
+    <h3 class = "d-block">See how MCU movies are doing over time.</h3> <br><br>
+  </div>
+  <div class = "row">
+    <img src = {{ url_for('static', filename = 'rating.png')}}  alt = "trend" width="100%" height = "100%/>
+  </div>
+  <div class = "row">
+    <h3 class = "d-block">Check out different phases.</h3>
+  </div>
+  <div class = "row">
+    <a class="col-sm" href = "{{ url_for('htmlcontent', phaseid = '1')}}"><h4>Phase 1</h4></a>
+    <a class="col-sm" href = "{{ url_for('htmlcontent', phaseid = '2')}}"><h4>Phase 2</h4></a>
+    <a class="col-sm" href = "{{ url_for('htmlcontent', phaseid = '3')}}"><h4>Phase 3</h4></a>
+  </div>
+    <div class="row">
+    <h3>Check out all MCU movies.</h3><br>
+      <table class="table">
+        <thead class = "thead-light">
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for m in moviesitem %}
+          <tr>
+            <td><img src = {{m.Poster}} alt = "poster img"/></td>
+            <td>{{m.Name}}</td>
+            <td><a href = "{{ url_for('moviecontent', movieid = m.Id)}}"><button type="button" class="btn-primary">Read More</button/><a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

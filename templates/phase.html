@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Welcome{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+{% if phaseitem %}
+    <h1>Phase name: {{ phasename }}.</h1>
+    <p>Phase intro: {{ phaseintro }}.</p>
+{% endif %}
+<a href = "{{ url_for('index')}}"><button type="button" class="btn-primary">Back</button/></a>
+</div>
+{% endblock %}
