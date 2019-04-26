@@ -15,9 +15,9 @@ Using Matplotlib, the movie will also display the ratings from imdb, Tomatometer
 
 ## How to run
 
-1. Install all requirements with `pip install -r requirements.txt'
+1. Install all requirements in your environment with `pip install -r requirements.txt'
 2. Run `python SI507project_tools.py runserver
-3. Open your browser, and access 127.0.0.1:5000
+3. Open your browser, and access 127.0.0.1:5000 on the browser
 
 ## How to use
 
@@ -28,7 +28,7 @@ Using Matplotlib, the movie will also display the ratings from imdb, Tomatometer
 ## Routes in this application
 - `/` -> this is the home page
 - `/phase/<phaseid>/` -> this route displays each phase details
-- `/movie/<movieid>/>' - > this route displays movie details
+- `/movie/<movieid>/>` - > this route displays movie details
 
 
 ## How to run tests

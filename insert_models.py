@@ -8,7 +8,7 @@ import datetime
 
 init_db()
 
-#####create a CSV file for directors#####
+#####insert data for directors#####
 
 director_list = []
 
@@ -21,7 +21,7 @@ for director in director_list:
     session.add(new_director)
     session.commit()
 
-#####create a csv file for phases#####
+#####insert data for phases#####
 
 with open('phase.csv', 'r') as csvfile:
     reader = csv.reader(csvfile)

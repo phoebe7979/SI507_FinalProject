@@ -1,7 +1,7 @@
 from SI507project_tools import *
 import unittest
 
-
+#The following test is used to see if the webscraping works for rotten tomatoes
 class TestSourcedMovieData(unittest.TestCase):
      def test_movie_namelist(self):       #testing that the list of movies scraped from rotten tomatoes are populated with movie titles
         self.assertIn('Captain Marvel', title_list)
@@ -14,10 +14,7 @@ class TestSourcedMovieData(unittest.TestCase):
      def test_poster(self):     # making sure the posterurl is there
         self.assertTrue(poster)
 
-class Testing_Movie(unittest.TestCase):
-     def test_init(self):
-        captainmarvel = Movies('Captain Marvel')
-        self.assertTrue(vaptainmarvel.imdbRating)
+
 
 
 
