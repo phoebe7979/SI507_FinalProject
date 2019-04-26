@@ -35,11 +35,30 @@ Using Matplotlib, the movie will also display the ratings from imdb, Tomatometer
 1. Simply run the SI507project_tests.py file
 
 ## In this repository:
-- Directory Name
-  - File in directory
-  - File in directory
-- File name
-- File name
+- screenshots
+  - index.png
+  - movie.png
+  - phase.png
+- static
+  - rating.png
+- templates
+  - index.html
+  - layout.html
+  - movie.html
+  - phase.html
+- advanced_expiry_caching.py
+- diagram.jpg
+- insert_models.py
+- mcumovies.db
+- mcumovies.sqlite
+- omdb_cached.data.json
+- phase.csv
+- README.md
+- requirements.txt
+- rt_cache.json
+- SI507project_tests.py
+- SI507project_tools.py
+
 
 ---
 ## Code Requirements for Grading
@@ -51,31 +70,31 @@ Below is a list of the requirements listed in the rubric for you to copy and pas
 
 ### General
 - [x] Project is submitted as a Github repository
-- [ ] Project includes a working Flask application that runs locally on a computer
+- [x] Project includes a working Flask application that runs locally on a computer
 - [x] Project includes at least 1 test suite file with reasonable tests in it.
 - [x] Includes a `requirements.txt` file containing all required modules to run program
 - [x] Includes a clear and readable README.md that follows this template
-- [ ] Includes a sample .sqlite/.db file
+- [x] Includes a sample .sqlite/.db file
 - [x] Includes a diagram of your database schema
-- [ ] Includes EVERY file needed in order to run the project
-- [ ] Includes screenshots and/or clear descriptions of what your project should look like when it is working
+- [x] Includes EVERY file needed in order to run the project
+- [x] Includes screenshots and/or clear descriptions of what your project should look like when it is working (Please refer to the screenshots folder)
 
 ### Flask Application
-- [ ] Includes at least 3 different routes
-- [ ] View/s a user can see when the application runs that are understandable/legible for someone who has NOT taken this course
-- [ ] Interactions with a database that has at least 2 tables
+- [x] Includes at least 3 different routes
+- [x] View/s a user can see when the application runs that are understandable/legible for someone who has NOT taken this course
+- [x] Interactions with a database that has at least 2 tables
 - [x] At least 1 relationship between 2 tables in database
-- [ ] Information stored in the database is viewed or interacted with in some way
+- [x] Information stored in the database is viewed or interacted with in some way
 
 ### Additional Components (at least 6 required)
-- [ ] Use of a new module (x)
+- [x] Use of a new module (matplotlib)
 - [ ] Use of a second new module
 - [ ] Object definitions using inheritance (indicate if this counts for 2 or 3 of the six requirements in a parenthetical)
 - [ ] A many-to-many relationship in your database structure
-- [ ] At least one form in your Flask application (x)
-- [ ] Templating in your Flask application (x)
+- [ ] At least one form in your Flask application
+- [x] Templating in your Flask application (x)
 - [ ] Inclusion of JavaScript files in the application
-- [ ] Links in the views of Flask application page/s
+- [x] Links in the views of Flask application page/s
 - [ ] Relevant use of `itertools` and/or `collections`
 - [x] Sourcing of data using web scraping
 - [x] Sourcing of data using web REST API requests
@@ -83,5 +102,5 @@ Below is a list of the requirements listed in the rubric for you to copy and pas
 - [x] Caching of data you continually retrieve from the internet in some way
 
 ### Submission
-- [ ] I included a link to my GitHub repository with the correct permissions on Canvas! (Did you though? Did you actually? Are you sure you didn't forget?)
-- [ ] I included a summary of my project and how I thought it went **in my Canvas submission**!
+- [x] I included a link to my GitHub repository with the correct permissions on Canvas! (Did you though? Did you actually? Are you sure you didn't forget?)
+- [x] I included a summary of my project and how I thought it went **in my Canvas submission**!
